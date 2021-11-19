@@ -11,7 +11,7 @@ from discord.ext import commands
 checkifcommand = ''
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
-uwu = 'uwu'
+
 bot = commands.Bot(command_prefix="-")
 
 class Fun(commands.Cog):
