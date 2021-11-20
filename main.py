@@ -8,7 +8,6 @@ from discord.ext.commands.help import DefaultHelpCommand
 from dotenv import load_dotenv
 from discord.ext import commands
 
-checkifcommand = ''
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
 
@@ -24,9 +23,8 @@ class Fun(commands.Cog):
 
 
 
-    @commands.command(name='whos_joe', help='Don\'t ask who joe is!', brief='JOE MAMA')
-    async def Joe(ctx):
-        
+    @commands.command(name='Ok', help='Don\'t ask who joe is!', brief='JOE MAMA')
+    async def Ok(ctx, self):
         await ctx.send(':weary:')
 
     @commands.command(name='exit', help='Shuts Down Bot. Requires Administrator.',
@@ -35,7 +33,7 @@ class Fun(commands.Cog):
     @commands.has_permissions(administrator=True)
 
     
-    async def _godie(ctx):
+    async def _godie(ctx, self):
 
         await ctx.send('Shutting down...')
         await asyncio.sleep(1)
