@@ -1,46 +1,35 @@
-import asyncio
-import discord
 import os
-from discord import message
-from discord.client import Client
-from discord.ext.commands.core import check
-from discord.ext.commands.help import DefaultHelpCommand
+from discord.ext.commands import bot
+import servercmds
+from discord.ext.commands.errors import MissingRequiredArgument
 from dotenv import load_dotenv
 from discord.ext import commands
 
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
-
+global bot
 bot = commands.Bot(command_prefix="-")
 
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, MissingRequiredArgument):
+        await ctx.send("You forgot to put something you idot") 
+
+@bot.event
+async def on_ready():
+    print(f'Logged on as {bot.user}!')
+
+
 class Fun(commands.Cog):
-    def __init__(self, client):
-        bot = discord.client
-        
-    @bot.event
-    async def on_ready():
-        print(f'Logged on as {bot.user}!')
+    @commands.command(name='weary', help='*Requires An Argument*')
+    async def joe_cmd(self, ctx, *, arg):
+        try:  
+            for x in range(0, int(arg)):
+                await ctx.send(':weary:')
+        except ValueError:
+            print('value eroor')
+            await ctx.send('That\'s not a number you idot')
 
-
-
-    @commands.command(name='Ok', help='Don\'t ask who joe is!', brief='JOE MAMA')
-    async def Ok(ctx, self):
-        await ctx.send(':weary:')
-
-    @commands.command(name='exit', help='Shuts Down Bot. Requires Administrator.',
-    brief = 'Admin Command' )
-    
-    @commands.has_permissions(administrator=True)
-
-    
-    async def _godie(ctx, self):
-
-        await ctx.send('Shutting down...')
-        await asyncio.sleep(1)
-        await ctx.send('Successfully disconnected.')
-        await bot.close()
-    
-    
+bot.add_cog(servercmds.Utilities(bot))
 bot.add_cog(Fun(bot))
-
 bot.run(TOKEN)
