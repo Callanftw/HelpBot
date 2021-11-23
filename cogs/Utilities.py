@@ -16,7 +16,7 @@ class Utilities(commands.Cog, description='Boring server commands that no one ne
     
     @commands.command(name='ping', help="Returns the bot's latency")
     async def ping_cmd(self, ctx):
-        await ctx.send('Pong! {0}ms latency!'.format(round(self.bot.latency, 3)))
+        await ctx.send('Pong! {0}ms latency!'.format(round(self.bot.latency, 1000)))
         
 def setup(bot):
     bot.add_cog(Utilities(bot))

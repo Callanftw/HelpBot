@@ -10,7 +10,7 @@ class Fun(commands.Cog, description='Fun commands that serve no purpose, except 
         try:  
             for x in range(0, int(arg)):
                 await ctx.send(':weary:')
-                await asyncio.sleep(1.01)
+                await asyncio.sleep(0.5)
         except ValueError:
             print('value eroor')
             await ctx.send('That\'s not a number you idot')
