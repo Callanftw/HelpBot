@@ -8,6 +8,7 @@ load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
 bot = commands.Bot(command_prefix="-")
 bot.remove_command('help')
+
 @bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, MissingRequiredArgument):

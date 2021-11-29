@@ -1,7 +1,7 @@
 import asyncio
 from discord.ext import commands
 
-class Utilities(commands.Cog, description='Boring server commands that no one needs.'):
+class Utilities(commands.Cog, description='Commands to set or give information about the bot, as well as developer commands.'):
     def __init__(self,bot):
         self.bot = bot
         
@@ -16,7 +16,9 @@ class Utilities(commands.Cog, description='Boring server commands that no one ne
     
     @commands.command(name='ping', help="Returns the bot's latency")
     async def ping_cmd(self, ctx):
-        await ctx.send('Pong! {0}ms latency!'.format(round(self.bot.latency, 1000)))
+        for x in range(0,5):
+
+            await ctx.send('Pong! {0}ms latency!'.format(round(self.bot.latency, 1000)))
         
 def setup(bot):
     bot.add_cog(Utilities(bot))
