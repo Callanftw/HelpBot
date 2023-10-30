@@ -19,7 +19,5 @@ async def on_ready():
     print(f'Logged on as {bot.user}!')
 
 if __name__ == "__main__":
-    bot.load_extension("cogs.Utilities")
-    bot.load_extension("cogs.Fun")
     bot.load_extension("cogs.Help")
     bot.run(TOKEN)
